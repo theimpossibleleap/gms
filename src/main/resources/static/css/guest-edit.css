@@ -1,0 +1,181 @@
+body {
+    margin: 0 auto;
+    background: rgba(0,0,0,0.9);
+    color: whitesmoke;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h1 {
+    margin: 0 0 50px 0;
+}
+
+#guest-edit-container {
+    height: calc(100vh - 100px);
+    width: calc(100dvw - 100px);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#guest-edit {
+    background: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.9);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-back-button {
+    all: unset;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 25px 0 0;
+    background: rgba(255,255,255,0.9);
+    color: rgba(0,0,0,0.9);
+    border-radius: 50%;
+    transition: ease 0.25s;
+}
+
+.header-back-button:hover {
+    color: whitesmoke;
+    background: seagreen;
+}
+
+#guest-edit-form {
+    flex-direction: column;
+    display: flex;
+    margin: 0 0 0 0;
+    width: 600px;
+}
+
+label {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 5px 0;
+}
+
+input {
+    all: unset;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 275px;
+    margin: 0 0 0 100px;
+    border-radius: 10px;
+}
+
+#menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0 0 0;
+    text-align: center;
+}
+
+.edit-buttons {
+    all: unset;
+    display: block;
+    padding: 10px;
+    margin: 10px 0 10px 0;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 250px;
+    border-radius: 10px;
+    transition: ease 0.25s;
+    color: whitesmoke;
+}
+
+.edit-buttons:hover {
+    background: seagreen;
+    color: whitesmoke;
+}
+
+.link-button {
+    all: unset;
+    display: block;
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 250px;
+    border-radius: 10px;
+    margin: 0 0 10px 0;
+    transition: ease 0.25s;
+    color: whitesmoke;
+}
+
+.link-button:hover {
+    background: seagreen;
+    color: whitesmoke;
+}
+
+.dropdown {
+    all: unset;
+    padding: 8px;
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 275px;
+    margin: 0 0 0 100px;
+    border-radius: 10px;
+}
+
+.error-handling {
+    color: #D92121;
+}
+
+@media (prefers-color-scheme: light) {
+
+    .header-back-button {
+        background: rgba(0,0,0,0.08);
+        color: rgba(0,0,0,0.8);
+    }
+
+    #guest-edit-container {
+        background: whitesmoke;
+        color: rgba(0,0,0,0.9);
+    }
+
+    #guest-edit {
+        background: rgba(255,255,255,0.9);
+        color: rgba(0,0,0,0.9);
+    }
+
+    input {
+        border: 1px solid rgba(0,0,0,0.5);
+    }
+
+    .dropdown {
+        border: 1px solid rgba(0,0,0,0.5);
+    }
+
+    .edit-buttons {
+        background: rgba(0,0,0,0.08);
+        color: rgba(0,0,0,0.8);
+    }
+
+    .edit-buttons:hover {
+        color: rgba(255,255,255,0.8);
+    }
+
+    .link-button {
+        background: rgba(0,0,0,0.08);
+        color: rgba(0,0,0,0.8);
+    }
+
+    .link-button:hover {
+        color: rgba(255,255,255,0.8);
+    }
+
+    .error-handling {
+        color: red;
+    }
+}

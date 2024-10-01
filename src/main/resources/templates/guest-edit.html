@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Details</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="bg-zinc-200 sm:bg-zinc-100 dark:sm:bg-zinc-950 dark:bg-zinc-800 font-sans">
+<div class="w-full h-full bg-zinc-100 dark:bg-zinc-950 dark:text-slate-300 flex justify-center items-center" id="guest-edit-container">
+    <div class="h-full sm:h-fit w-full sm:w-9/12 sm:max-w-lg bg-zinc-200 dark:bg-zinc-800 p-16 sm:mt-16 sm:mb-16 sm:rounded-xl" id="guest-edit">
+        <div class="flex mb-6" th:if="${isEdit}">
+            <a class="transition-all hover:bg-emerald-600 text-black hover:text-white flex items-center justify-center text-4xl bg-zinc-100 dark:bg-zinc-500 p-2 dark:hover:bg-emerald-700 w-12 h-12 rounded-full" th:href="@{/guests/{guestId}(guestId=${guest.guestId})}">← </a>
+            <div class="text-4xl ml-6">Edit Guest</div>
+        </div>
+        <div class="flex mb-6" th:if="${!isEdit}">
+            <a class="transition-all hover:bg-emerald-600 text-black hover:text-white flex items-center justify-center text-4xl bg-zinc-100 dark:bg-zinc-500 p-2 dark:hover:bg-emerald-700 w-12 h-12 rounded-full" th:href="@{/}">← </a>
+            <div class="text-4xl ml-6">Add Guest</div>
+        </div>
+
+        <form class="flex flex-col" id="guest-edit-form" th:action="@{/guests/save}" th:object="${guest}" method="post">
+            <input type="hidden" th:field="*{guestId}" />
+            <input type="hidden" th:field="*{meal.id}" />
+
+            <label class="flex flex-col w-full" for="firstName">
+                <input class="w-auto p-1.5 rounded-t-lg dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="firstName" placeholder="* First Name " th:field="*{firstName}"/>
+            </label>
+
+            <label class="flex flex-col" for="lastName">
+                <input class="w-auto p-1.5  dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="lastName" placeholder="* Last Name" th:field="*{lastName}" />
+            </label>
+
+            <!-- pattern=".+@.+\..+" -->
+            <label class="flex flex-col" for="email">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="email" placeholder="* E-Mail" th:field="*{email}" />
+            </label>
+
+            <label class="flex flex-col" for="phone">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 dark:border-zinc-900 border-b" type="tel" id="phone" name="phone" placeholder="* Phone Number" maxlength="14" th:field="*{phone}" />
+            </label>
+
+            <label class="flex flex-col" for="address1">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="address1" placeholder="Address 1" th:field="*{address1}" />
+            </label>
+
+            <label class="flex flex-col" for="address2">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="address2" placeholder="Address 2" th:field="*{address2}" />
+            </label>
+
+            <label class="flex flex-col" for="city">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 dark:border-zinc-900 border-b" type="text" id="city" placeholder="City" th:field="*{city}" />
+            </label>
+
+            <label class="flex flex-col" for="state">
+                <input class="w-auto p-1.5 dark:bg-zinc-500  dark:border-zinc-900 border-b" type="text" id="state" placeholder="State" th:field="*{state}" maxlength="2" />
+            </label>
+
+            <label class="flex flex-col mb-4" for="zip">
+                <input class="w-auto p-1.5 dark:bg-zinc-500 rounded-b-lg dark:border-zinc-900" type="text" id="zip" placeholder="Zip Code" th:field="*{zip}" maxlength="5" />
+            </label>
+
+            <div class="mt-8 mb-4 text-2xl">RSVP</div>
+            <label class="flex flex-col mb-4" for="rsvp">
+                <select class="appearance-none w-auto p-1.5 rounded-md dark:bg-zinc-500 dark:border-zinc-300" id="rsvp" th:field="*{rsvpStatus}">
+                    <option value="" th:selected="${rsvpStatus == null}">-- Select RSVP Status --</option>
+                    <option th:each="rsvp : ${T(com.erickalovesadam.wedding.entities.RSVPStatus).values()}"
+                            th:value="${rsvp}"
+                            th:text="${rsvp.displayName}"></option>
+                </select>
+            </label>
+
+            <div class="mt-8 mb-4 text-2xl">Meal Preferences</div>
+            <label class="flex flex-col mb-4" for="appetizer">
+                <select class="appearance-none w-auto p-1.5 rounded-md dark:bg-zinc-500 dark:border-zinc-300" id="appetizer" th:field="*{meal.appetizer}">
+                    <option value="" th:selected="${meal.appetizer == null}">-- Select Appetizer --</option>
+                    <option th:each="app : ${T(com.erickalovesadam.wedding.entities.mealenum.Appetizer).values()}"
+                            th:value="${app}"
+                            th:text="${app.displayName}"></option>
+                </select>
+            </label>
+            <label class="flex flex-col mb-4" for="entree">
+                <select class="appearance-none w-auto p-1.5 rounded-md dark:bg-zinc-500 dark:border-zinc-300" id="entree" th:field="*{meal.entree}">
+                    <option value="" th:selected="${meal.entree == null}">-- Select Entree --</option>
+                    <option th:each="entree : ${T(com.erickalovesadam.wedding.entities.mealenum.Entree).values()}"
+                            th:value="${entree}"
+                            th:text="${entree.displayName}"></option>
+                </select>
+            </label>
+            <label class="flex flex-col mb-4" for="dessert">
+                <select class="appearance-none w-auto p-1.5 rounded-md dark:bg-zinc-500 dark:border-zinc-300" id="dessert" th:field="*{meal.dessert}">
+                    <option value="" th:selected="${meal.dessert == null}">-- Select Dessert --</option>
+                    <option th:each="dessert : ${T(com.erickalovesadam.wedding.entities.mealenum.Dessert).values()}"
+                            th:value="${dessert}"
+                            th:text="${dessert.displayName}"></option>
+                </select>
+            </label>
+
+            <div th:if="${#fields.hasErrors('*')}" class="mb-6 mt-6">
+                <div class="text-red-500 font-extrabold text-xl">Errors</div>
+                <ul>
+                    <li th:each="error : ${#fields.errors('*')}" th:text="${error}"  class="text-red-500">error</li>
+                </ul>
+            </div>
+
+            <div class="w-full flex justify-center items-center" id="menu-container">
+                <button class="transition-all p-2.5 m-2 w-32 border-2 border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 text-center" type="submit" th:text="${isEdit} ? 'Save' : 'Add Guest'"></button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const phoneInput = document.getElementById('phone');
+
+        phoneInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+    });
+</script>
+</body>
+</html>

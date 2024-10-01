@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Details</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="bg-zinc-200 sm:bg-zinc-100 dark:sm:bg-zinc-950 dark:bg-zinc-800 font-sans">
+    <div class="w-full h-full bg-zinc-100 dark:bg-zinc-950 dark:text-slate-300 flex justify-center items-center" id="guest-detail-container">
+        <div class="h-full sm:h-fit w-full sm:w-9/12 sm:max-w-lg bg-zinc-200 dark:bg-zinc-800 p-16 sm:mt-16 sm:mb-16 sm:rounded-xl" id="guest-container">
+            <div class="dark:bg-zinc-800" id="guest-details">
+                <div class="flex mb-6">
+                    <a class="transition-all hover:bg-emerald-600 text-black hover:text-white flex items-center justify-center text-4xl bg-zinc-100 dark:bg-zinc-500 p-2 dark:hover:bg-emerald-700 w-12 h-12 rounded-full" th:href="@{/}">←</a>
+                    <div class="text-4xl ml-6" th:text="${guest.firstName} + ' ' + ${guest.lastName}"></div>
+                </div>
+
+                <span th:text="${guest.email}"></span><br />
+                <span th:text="${guest.phone}"></span><br />
+
+                <div class="mt-8 mb-4 text-2xl border-b">Address</div>
+                <span th:text="${guest.address1}"></span>
+                <div th:if="${guest.address2 != null}"><span th:text="${guest.address2}"></span></div>
+                <span th:text="${guest.city} + ', ' + ${guest.state} + ' ' + ${guest.zip}"></span><br/>
+
+                <div class="mt-8 mb-4 text-2xl border-b">Meal Preferences</div>
+                <div class="meal-preference" th:if="${meal.appetizer != null}"><span><strong>Appetizer: </strong></span><span th:text="${meal.appetizer.displayName}"></span></div>
+                <div class="meal-preference" th:if="${meal.entree != null}"><span><strong>Entree: </strong></span><span th:text="${meal.entree.displayName}"></span></div>
+                <div class="meal-preference" th:if="${meal.dessert != null}"><span><strong>Dessert: </strong></span><span th:text="${meal.dessert.displayName}"></span></div>
+
+            </div>
+            <div class="flex mt-8 w-full items-center justify-center" id="button-container">
+                <a class="transition-all p-2.5 m-2 w-32 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 text-center" th:href="@{/guests/{guestId}/edit(guestId=${guest.guestId})}">Edit Details</a>
+                <form th:action="@{/guests/delete/{id}(id=${guest.guestId})}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="transition-all p-2.5 m-2 w-32 border border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-400 rounded-lg hover:bg-red-500 dark:hover:bg-red-500 text-center" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

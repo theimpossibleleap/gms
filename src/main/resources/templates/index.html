@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-zinc-950">
+<head>
+    <meta charset="UTF-8">
+    <title>Guest Management System</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="font-sans">
+    <div id="container" class="h-svh dark:bg-zinc-950 bg-zinc-50 mx-auto columns-2 flex flex-col sm:flex-row dark:text-zinc-200">
+        <div id="menu" class="flex p-6 sm:p-4 sm:w-24 lg:w-80 sm:h-full lg:p-10 sm:flex-col sm:gap-6 items-center lg:items-start justify-between sm:justify-normal bg-zinc-300 dark:bg-zinc-950">
+            <div class="items-center flex sm:flex-col sm:items-start" id="logo-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-12 lg:size-20">
+                    <path fill-rule="evenodd" d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z" clip-rule="evenodd" />
+                </svg>
+                <div class="lg:block sm:hidden ml-6 sm:ml-0 text-sm sm:text-2xl xl:text-4xl font-bold">Guest Management System</div>
+            </div>
+            <div class="flex items-center justify-center sm:flex-col sm:items-center sm:justify-center lg:items-start lg:justify-normal mt-0 sm:mt-12 lg:block sm:w-full">
+                <a class="transition-all p-2.5 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 hidden lg:block" th:href="@{/guests/add}">Add Guest</a>
+                <a class="mr-2 sm:mr-0 transition-all w-10 h-10 border border-zinc-400 dark:border-zinc-700 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 flex justify-center items-center lg:hidden" th:href="@{/guests/add}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+
+                <a class="mt-6 transition-all p-2.5 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 hidden lg:block" th:href="@{/guests/reports}">Reports</a>
+                <a class="mt-0 sm:mt-6 transition-all w-10 h-10 border border-zinc-400 dark:border-zinc-700 rounded-full hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900 flex justify-center items-center lg:hidden hover:fill-emerald-600" th:href="@{/guests/reports}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 18.375V5.625ZM21 9.375A.375.375 0 0 0 20.625 9h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5Zm0 3.75a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5Zm0 3.75a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 0 0 .375-.375v-1.5ZM10.875 18.75a.375.375 0 0 0 .375-.375v-1.5a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375h7.5ZM3.375 15h7.5a.375.375 0 0 0 .375-.375v-1.5a.375.375 0 0 0-.375-.375h-7.5a.375.375 0 0 0-.375.375v1.5c0 .207.168.375.375.375Zm0-3.75h7.5a.375.375 0 0 0 .375-.375v-1.5A.375.375 0 0 0 10.875 9h-7.5A.375.375 0 0 0 3 9.375v1.5c0 .207.168.375.375.375Z" clip-rule="evenodd" />
+                    </svg>
+
+                </a>
+
+                <form class="hidden w-full mt-24" th:action="@{/logout}" method="post">
+                    <input class="w-full mt-6 transition-all p-2.5 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-red-500 dark:hover:text-zinc-200 hidden lg:block text-left" type="submit" value="Logout"/>
+                </form>
+
+            </div>
+        </div>
+        <div id="content" class="h-full w-screen dark:bg-zinc-900 bg-zinc-100 flex flex-col sm:h-screen overflow-auto">
+            <div id="header" class="w-full flex flex-col xl:flex-row xl:justify-between items-center h-fit dark:bg-zinc-800 bg-zinc-200 p-6 xl:p-16">
+                <div class="w-full" id="page-title">
+                    <p class="text-center w-full xl:w-48 mb-12 xl:m-0 text-3xl font-bold">Guest List</p>
+                </div>
+                <div class="w-full flex flex-col xl:flex-row lg:items-center" id="search-bar">
+                    <form class="w-full flex flex-col items-center md:flex-row" id="search-form" th:action="@{/guests/search}" method="get">
+                        <label class="w-full" id="search-label">
+                            <input class="w-full lg:w-72 xl:w-96 p-2.5 rounded-lg border xl:mr-3 text-zinc-900" type="text" name="keyword" id="search-keyword" th:value="${keyword}" placeholder="Search by First or Last Name"/>
+                        </label>
+                        <div class="mt-6 w-full sm:mt-0 sm:flex">
+                            <button class="transition-all p-2.5 w-full sm:w-22 border border-zinc-400 dark:border-zinc-700 rounded-lg xl:mr-3 mb-6 sm:mb-0 hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900" id="search-submit" type="submit">Search</button>
+                            <button class="transition-all p-2.5 w-full sm:w-22 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-200 dark:hover:text-zinc-900" id="search-reset" type="button" onclick="resetSearch()">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div id="table-container" class="w-full flex-1 sm:h-full p-6 sm:p-16 sm:mb-16">
+                <div th:if="${#lists.isEmpty(guests)}">
+                    <p>No guests available.</p>
+                </div>
+                <table class="table-auto w-full text-left" th:unless="${#lists.isEmpty(guests)}">
+                    <thead class="border-b border-zinc-500 dark:border-zinc-200">
+                        <th>Name</th>
+                        <th class="hidden lg:flex lg:items-center">E-Mail</th>
+                        <th class="text-center">RSVP Status</th>
+                        <th class="text-center">Meal Status</th>
+                        <th class="text-center">View</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="guest : ${guests}">
+                        <td th:text="${guest.firstName + ' ' + guest.lastName}"></td>
+                        <td class="hidden lg:flex h-12 lg:items-center" th:text="${guest.email}"></td>
+                        <td class="text-center" th:text="${guest.rsvpStatus == null} ? '' : ${guest.rsvpStatus.displayName}"></td>
+                        <td class="text-center">
+                            <h3 th:if="${guest.meal.appetizer == null && guest.meal.entree == null && guest.meal.dessert == null}"><i class="bi bi-circle"></i></h3>
+                            <h3 th:if="${guest.meal.appetizer != null && guest.meal.entree != null && guest.meal.dessert != null}"><i class="bi bi-check-circle-fill"></i></h3>
+                            <h3 th:if="${guest.meal.appetizer != null || guest.meal.entree != null || guest.meal.dessert != null}"
+                                th:unless="${guest.meal.appetizer != null && guest.meal.entree != null && guest.meal.dessert != null}">
+                                <i class="bi bi-circle-half"></i></h3>
+                        </td>
+                        <td class="w-24">
+                            <div class="flex flex-col sm:flex-row justify-center" id="buttons">
+                                <a class="flex transition-all p-1.5 m-2 border border-zinc-400 dark:border-zinc-700 rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-800 items-center justify-center" th:href="@{/guests/{guestId}(guestId=${guest.guestId})}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                        <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+                                <!-- <a class="link-button" th:href="@{/guests/{guestId}/edit(guestId=${guest.guestId})}">Edit</a> -->
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        function resetSearch() {
+            const form = document.getElementById("search-form");
+            const input = document.getElementById("search-keyword");
+
+            input.value = '';
+            form.submit();
+        }
+    </script>
+</body>
+</html>
