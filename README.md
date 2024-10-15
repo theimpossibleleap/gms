@@ -1,5 +1,4 @@
-# Software Engineering Capstone
-## Guest Management System Web Application
+# Guest Management System Web Application
 
 
 ## Project Links
