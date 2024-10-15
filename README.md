@@ -1,9 +1,5 @@
 # Guest Management System Web Application
 
-
-## Project Links
-[AWS Deployed Application - Guest Management System](http://d424-capstone-elasticbean-env.eba-xjpmv8ym.us-east-1.elasticbeanstalk.com/)
-
 ## Local Development Guide
 
 ### 1. Clone Project from GitHub
